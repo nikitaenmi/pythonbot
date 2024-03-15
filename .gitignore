@@ -1,0 +1,7 @@
+key.py
+Database/alembic.ini
+Database/migrations
+Database/config.py
+docker-compose.yml
+**/__pycache__/*
+.idea
