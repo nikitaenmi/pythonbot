@@ -22,7 +22,6 @@ class BrandDAL:
 
 # print(BrandDAL.search_brand("324321"))
 
-
 #     @staticmethod
 #     def search_brand():
 #         with Session() as session:
