@@ -18,16 +18,19 @@ class BrandDAL:
     @staticmethod
     def search_brand(name):
         with Session() as session:
-            res = session.execute(text("SELECT * FROM brand"))
-            for i in range(len(res.all())):
-                res = session.execute(text("SELECT * FROM brand"))
-                if res.all()[i][1] == name:
-                    return True, print("True")
-                else:
-                    return False, print("False")
+            return session.execute(text(f"SELECT * FROM brand WHERE namebrand = '{name}'")).fetchone() is not None
+#
+# # print(BrandDAL.search_brand("324321"))
 
 
-
+#     @staticmethod
+#     def search_brand():
+#         with Session() as session:
+#              res = list(session.execute(text("SELECT * FROM brand")))
+#              print(res)
+#              print(res)
+#
+# BrandDAL.search_brand()
 
 
 
