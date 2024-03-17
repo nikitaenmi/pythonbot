@@ -20,7 +20,7 @@ class BrandDAL:
         with Session() as session:
             return session.execute(text(f"SELECT * FROM brand WHERE namebrand = '{name}'")).fetchone() is not None
 
-# # print(BrandDAL.search_brand("324321"))
+# print(BrandDAL.search_brand("324321"))
 
 
 #     @staticmethod
