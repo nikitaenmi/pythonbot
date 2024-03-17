@@ -19,7 +19,7 @@ class BrandDAL:
     def search_brand(name):
         with Session() as session:
             return session.execute(text(f"SELECT * FROM brand WHERE namebrand = '{name}'")).fetchone() is not None
-#
+
 # # print(BrandDAL.search_brand("324321"))
 
 
