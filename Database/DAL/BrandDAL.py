@@ -1,12 +1,13 @@
 from Database.Models.Brand import Brand
+from Database.Models.Username import UserID
 from Database.config import Session
 from sqlalchemy import text
 class BrandDAL:
     @staticmethod
-    def new_brand(namebrand):
+    def new_brand(id):
         with Session() as session:
-            new_brand = Brand(namebrand=namebrand)
-            session.add(new_brand)
+            new_id = UserID(user_id=id)
+            session.add(new_id)
             session.commit()
 
     @staticmethod
@@ -16,9 +17,9 @@ class BrandDAL:
             session.commit()
 
     @staticmethod
-    def search_brand(name):
+    def search_brand(id):
         with Session() as session:
-            return session.execute(text(f"SELECT * FROM brand WHERE namebrand = '{name}'")).fetchone() is not None
+            return session.execute(text(f"SELECT * FROM user_id WHERE user_id = '{id}'")).fetchone() is not None
 
 # print(BrandDAL.search_brand("324321"))
 
