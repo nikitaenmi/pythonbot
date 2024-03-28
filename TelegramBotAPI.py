@@ -17,6 +17,15 @@ def start(message):
     btn5 = types.KeyboardButton("Ввести своё имя")
     markup.add(btn1,btn2,btn3, btn4,btn5)
     bot.send_message(message.chat.id, 'Привет!', reply_markup=markup)
+    user_id = message.from_user.id
+    if BrandDAL.search_brand(user_id) == True:
+        bot.send_message(message.chat.id, "Ты в базе данных")
+    else:
+        bot.send_message(message.chat.id, "Ты не в базе")
+        BrandDAL.new_brand(user_id)
+        bot.send_message(message.chat.id, "Сохранил тебя")
+
+
 
 
 @bot.message_handler(content_types=["text"])
@@ -33,14 +42,14 @@ def handle_text(message):
     if message.text == "Корзина":
         basket(message)
 
-    if message.text == "Связаться с консультантом":
-         webbrowser.open('https://t.me/nnikkittaaa')
-
     if message.text == "Настройки":
         settings(message)
 
     if message.text == 'Назад':
         start(message)
+
+    if message.text == "Кроссовки №1":
+        bot.send_message(message.chat.id, 'бархатные тяги')
 
 def save_link(message):
    my_link = message.text
@@ -64,6 +73,9 @@ def shoes_products(message):
     btn4 = types.KeyboardButton("Назад")
     markup.add(btn1, btn2, btn3, btn4)
     bot.send_message(message.chat.id,"Наши кроссовки:", reply_markup=markup)
+
+
+
 
 def basket(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
