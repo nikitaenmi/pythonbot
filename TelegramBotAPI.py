@@ -42,6 +42,8 @@ def handle_text(message):
     if message.text == "Корзина":
         basket(message)
 
+        bot.send_message(message.chat.id, str(BrandDAL.search_basket(message.from_user.id)))
+
     if message.text == "Настройки":
         settings(message)
 
@@ -49,7 +51,15 @@ def handle_text(message):
         start(message)
 
     if message.text == "Кроссовки №1":
-        bot.send_message(message.chat.id, 'бархатные тяги')
+        sneakers(message)
+        #bot.send_message(message.chat.id, 'бархатные тяги')
+
+    if message.text == 'Добавить в корзину':
+        id = message.from_user.id
+        BrandDAL.add_basket('Бархатные тяги', id)
+
+    #if message.text == "Добавить в корзину":
+
 
 def save_link(message):
    my_link = message.text
@@ -90,5 +100,13 @@ def settings(message):
     btn3 = types.KeyboardButton("Назад")
     markup.add(btn1, btn2, btn3)
     bot.send_message(message.chat.id, "Наши кроссовки:", reply_markup=markup)
+
+
+def sneakers(message):
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    btn1 = types.KeyboardButton("Добавить в корзину")
+    btn2 = types.KeyboardButton("Назад")
+    markup.add(btn1, btn2)
+    bot.send_message(message.chat.id, "Бархатные тяги", reply_markup=markup)
 
 bot.infinity_polling()
