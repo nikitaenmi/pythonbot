@@ -39,6 +39,13 @@ class BrandDAL:
             session.add(new_brand_n_id_basket)
             session.commit()
 
+    @staticmethod
+    def delete_basket(id):
+        with Session() as session:
+            session.query(Basket).filter(Basket.user_id == id).delete()
+            session.commit()
+
+
 # print(BrandDAL.search_brand("324321"))
 
 #     @staticmethod
